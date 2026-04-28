@@ -497,6 +497,48 @@
     if (y) y.textContent = String(new Date().getFullYear());
   }
 
+  /* ----------------------------- Chat widget ------------------------------ */
+  function initChatWidget() {
+    const root = $("#chatWidget");
+    const fab = $("#chatWidgetFab");
+    const panel = $("#chatWidgetPanel");
+    const close = $("#chatWidgetClose");
+    if (!root || !fab || !panel || !close) return;
+
+    const KEY = "agt_chat_open";
+
+    const setOpen = (open) => {
+      const on = !!open;
+      root.classList.toggle("is-open", on);
+      fab.setAttribute("aria-expanded", String(on));
+      try {
+        localStorage.setItem(KEY, on ? "1" : "0");
+      } catch {
+        // ignore
+      }
+    };
+
+    const toggle = () => setOpen(!root.classList.contains("is-open"));
+
+    fab.addEventListener("click", toggle);
+    close.addEventListener("click", () => setOpen(false));
+
+    // Escape to close
+    window.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      if (!root.classList.contains("is-open")) return;
+      setOpen(false);
+    });
+
+    // Restore previous state
+    try {
+      const wasOpen = localStorage.getItem(KEY) === "1";
+      setOpen(wasOpen);
+    } catch {
+      setOpen(false);
+    }
+  }
+
   /* ------------------------------- Boot up -------------------------------- */
   function boot() {
     initYear();
@@ -508,6 +550,7 @@
     initCart();
     initNewsletter();
     initDraggable();
+    initChatWidget();
 
     // Parallax layers
     parallaxBind($("#parallax"), "[data-depth]");
