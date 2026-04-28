@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antigravity Toys — Where Toys Defy Gravity!</title>
+    <meta
+      name="description"
+      content="Antigravity Toys: futuristic, zero‑gravity toys for kids and parents—interactive, safe, and ridiculously fun."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons (allowed) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Ambient background -->
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="bg-orbs" aria-hidden="true">
+      <span class="orb orb--1"></span>
+      <span class="orb orb--2"></span>
+      <span class="orb orb--3"></span>
+    </div>
+
+    <!-- Top nav -->
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Antigravity Toys home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">Antigravity <b>Toys</b></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#toys">Toys</a>
+        <a href="#lab">Interactive</a>
+        <a href="#story">Story</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+
+      <div class="topbar__actions">
+        <button class="chip" type="button" id="toggleReduceMotion" aria-pressed="false">
+          <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+          Motion
+        </button>
+
+        <button class="cart" type="button" id="openCart" aria-label="Open cart">
+          <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+          <span class="cart__label">Cart</span>
+          <span class="cart__count" id="cartCount" aria-label="Items in cart">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero__grid">
+          <div class="hero__copy reveal">
+            <p class="badge">
+              <span class="badge__dot" aria-hidden="true"></span>
+              Futuristic fun for kids + parents
+            </p>
+            <h1 class="hero__title">Where Toys Defy Gravity!</h1>
+            <p class="hero__subtitle">
+              Welcome to a playful space‑lab where imagination floats, science sparkles, and every toy feels like it came
+              from the future.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#toys" id="exploreBtn">
+                Explore Toys
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+              <a class="btn btn--ghost" href="#story">
+                Meet the Lab
+                <i class="fa-regular fa-circle-play" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <div class="hero__stats">
+              <div class="stat">
+                <div class="stat__num">6</div>
+                <div class="stat__label">Zero‑G Bestsellers</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">5–14</div>
+                <div class="stat__label">Kid‑Approved Ages</div>
+              </div>
+              <div class="stat">
+                <div class="stat__num">Ultra</div>
+                <div class="stat__label">Safe + Tested</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating toy scene (parallax) -->
+          <div class="hero__scene" id="parallax" aria-hidden="true">
+            <div class="planet planet--ring" data-depth="0.08"></div>
+            <div class="planet planet--pink" data-depth="0.14"></div>
+            <div class="planet planet--cyan" data-depth="0.10"></div>
+
+            <div class="toy toy--car" data-depth="0.22" data-toy>
+              <div class="toy__glow"></div>
+              <svg viewBox="0 0 220 120" role="img" aria-label="Anti-gravity car">
+                <defs>
+                  <linearGradient id="gCar" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#b36bff" />
+                    <stop offset="1" stop-color="#00e5ff" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M40 74c8-22 24-34 55-34h44c22 0 36 7 47 25l9 14H40z"
+                  fill="url(#gCar)"
+                  opacity="0.95"
+                />
+                <rect x="55" y="50" width="54" height="20" rx="10" fill="#0b0f1e" opacity="0.55" />
+                <rect x="114" y="50" width="42" height="20" rx="10" fill="#0b0f1e" opacity="0.55" />
+                <circle cx="78" cy="86" r="15" fill="#0b0f1e" />
+                <circle cx="78" cy="86" r="9" fill="#00e5ff" opacity="0.85" />
+                <circle cx="160" cy="86" r="15" fill="#0b0f1e" />
+                <circle cx="160" cy="86" r="9" fill="#ff4fd8" opacity="0.85" />
+                <path d="M50 92c20 12 100 12 120 0" fill="none" stroke="#00e5ff" stroke-width="3" opacity="0.35" />
+              </svg>
+            </div>
+
+            <div class="toy toy--drone" data-depth="0.18" data-toy>
+              <div class="toy__glow"></div>
+              <svg viewBox="0 0 220 140" role="img" aria-label="Floating drone">
+                <defs>
+                  <linearGradient id="gDrone" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#00e5ff" />
+                    <stop offset="1" stop-color="#ff4fd8" />
+                  </linearGradient>
+                </defs>
+                <rect x="70" y="58" width="80" height="32" rx="16" fill="url(#gDrone)" />
+                <circle cx="64" cy="54" r="16" fill="#0b0f1e" />
+                <circle cx="64" cy="54" r="10" fill="#00e5ff" opacity="0.9" />
+                <circle cx="156" cy="54" r="16" fill="#0b0f1e" />
+                <circle cx="156" cy="54" r="10" fill="#ff4fd8" opacity="0.9" />
+                <circle cx="64" cy="98" r="16" fill="#0b0f1e" />
+                <circle cx="64" cy="98" r="10" fill="#ff4fd8" opacity="0.85" />
+                <circle cx="156" cy="98" r="16" fill="#0b0f1e" />
+                <circle cx="156" cy="98" r="10" fill="#00e5ff" opacity="0.85" />
+                <path d="M56 54h-28M164 54h28M56 98h-28M164 98h28" stroke="#b36bff" stroke-width="4" opacity="0.45" />
+              </svg>
+            </div>
+
+            <div class="toy toy--ball" data-depth="0.26" data-toy>
+              <div class="toy__glow"></div>
+              <svg viewBox="0 0 180 180" role="img" aria-label="Magnetic levitation ball">
+                <defs>
+                  <radialGradient id="gBall" cx="35%" cy="30%" r="70%">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95" />
+                    <stop offset="0.3" stop-color="#7c5cff" stop-opacity="0.95" />
+                    <stop offset="1" stop-color="#00e5ff" stop-opacity="0.8" />
+                  </radialGradient>
+                </defs>
+                <circle cx="90" cy="86" r="54" fill="url(#gBall)" />
+                <path d="M36 120c18 14 90 14 108 0" fill="none" stroke="#ff4fd8" stroke-width="4" opacity="0.35" />
+                <path d="M52 58c18-24 56-26 78-12" fill="none" stroke="#ffffff" stroke-width="6" opacity="0.18" />
+              </svg>
+            </div>
+
+            <div class="scene__caption glass" data-depth="0.06">
+              <div class="scene__title">Move your mouse.</div>
+              <div class="scene__sub">Everything floats in zero‑G.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="section section--toys" id="toys">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <h2 class="section__title">Bestsellers from the Zero‑Gravity Aisle</h2>
+            <p class="section__subtitle">
+              Six futuristic toys with glowing edges, soft shadows, and big “wow” energy. Hover each card to feel the lift.
+            </p>
+          </div>
+
+          <div class="products">
+            <article class="card product reveal" data-tilt>
+              <div class="product__media">
+                <img
+                  class="product__photo"
+                  src="assets/products/toy-car.jpg"
+                  alt="Toy car photo"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div class="product__spark" aria-hidden="true"></div>
+              </div>
+              <div class="product__body">
+                <h3 class="product__name">Anti‑Gravity Racer</h3>
+                <p class="product__desc">Glides above surfaces with hover‑boost lights.</p>
+                <div class="product__row">
+                  <span class="price">$39</span>
+                  <button class="btn btn--small btn--primary" data-add="Anti‑Gravity Racer" data-price="39">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card product reveal" data-tilt>
+              <div class="product__media">
+                <img
+                  class="product__photo"
+                  src="assets/products/toy-drone.jpg"
+                  alt="Toy drone photo"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div class="product__spark" aria-hidden="true"></div>
+              </div>
+              <div class="product__body">
+                <h3 class="product__name">Floating Mini‑Drone</h3>
+                <p class="product__desc">Stabilized hover + kid‑friendly soft prop guards.</p>
+                <div class="product__row">
+                  <span class="price">$49</span>
+                  <button class="btn btn--small btn--primary" data-add="Floating Mini‑Drone" data-price="49">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card product reveal" data-tilt>
+              <div class="product__media">
+                <img
+                  class="product__photo"
+                  src="assets/products/toy-ball.jpg"
+                  alt="Toy balls photo"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div class="product__spark" aria-hidden="true"></div>
+              </div>
+              <div class="product__body">
+                <h3 class="product__name">Levitation Orb</h3>
+                <p class="product__desc">A magnetic ball that “floats” with cosmic glow.</p>
+                <div class="product__row">
+                  <span class="price">$29</span>
+                  <button class="btn btn--small btn--primary" data-add="Levitation Orb" data-price="29">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card product reveal" data-tilt>
+              <div class="product__media">
+                <img
+                  class="product__photo"
+                  src="assets/products/toy-glove.jpg"
+                  alt="Astronaut glove photo"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div class="product__spark" aria-hidden="true"></div>
+              </div>
+              <div class="product__body">
+                <h3 class="product__name">Gravity Flip Gloves</h3>
+                <p class="product__desc">Gesture controls for spins, flips, and “float” tricks.</p>
+                <div class="product__row">
+                  <span class="price">$24</span>
+                  <button class="btn btn--small btn--primary" data-add="Gravity Flip Gloves" data-price="24">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card product reveal" data-tilt>
+              <div class="product__media">
+                <img
+                  class="product__photo"
+                  src="assets/products/toy-ring.jpg"
+                  alt="Ring toss toy photo"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div class="product__spark" aria-hidden="true"></div>
+              </div>
+              <div class="product__body">
+                <h3 class="product__name">Orbit Ring Launcher</h3>
+                <p class="product__desc">Launches glowing rings that loop like tiny planets.</p>
+                <div class="product__row">
+                  <span class="price">$19</span>
+                  <button class="btn btn--small btn--primary" data-add="Orbit Ring Launcher" data-price="19">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card product reveal" data-tilt>
+              <div class="product__media">
+                <img
+                  class="product__photo"
+                  src="assets/products/toy-slime.jpg"
+                  alt="Slime toy photo"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <div class="product__spark" aria-hidden="true"></div>
+              </div>
+              <div class="product__body">
+                <h3 class="product__name">Cosmic Cloud Putty</h3>
+                <p class="product__desc">Color‑shifting slime with a star‑dust shimmer.</p>
+                <div class="product__row">
+                  <span class="price">$14</span>
+                  <button class="btn btn--small btn--primary" data-add="Cosmic Cloud Putty" data-price="14">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE -->
+      <section class="section section--interactive" id="lab">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <h2 class="section__title">Interactive Zero‑G Lab</h2>
+            <p class="section__subtitle">
+              Parallax reacts to your cursor. Drag the toy module and watch it hover back into place.
+            </p>
+          </div>
+
+          <div class="lab">
+            <div class="card lab__panel reveal">
+              <div class="lab__panelHead">
+                <div class="lab__lights" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="lab__panelTitle">Hover + Drag Module</div>
+                <div class="lab__panelHint">Try it</div>
+              </div>
+
+              <div class="lab__arena" id="arena" aria-label="Interactive arena">
+                <button class="draggable" id="draggableToy" type="button" aria-label="Drag me">
+                  <span class="draggable__glow" aria-hidden="true"></span>
+                  <span class="draggable__icon" aria-hidden="true">
+                    <i class="fa-solid fa-rocket"></i>
+                  </span>
+                  <span class="draggable__text">Drag‑Rocket</span>
+                </button>
+
+                <div class="lab__floaters" aria-hidden="true">
+                  <span class="floater f1" data-depth="0.18"></span>
+                  <span class="floater f2" data-depth="0.12"></span>
+                  <span class="floater f3" data-depth="0.22"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card lab__notes reveal">
+              <h3 class="lab__notesTitle">What you’re seeing</h3>
+              <ul class="list">
+                <li><b>Mouse parallax</b> shifts layers at different depths.</li>
+                <li><b>Floating physics‑feel</b> uses springy easing (no heavy libraries).</li>
+                <li><b>Drag interaction</b> is pointer‑based (works on touch too).</li>
+              </ul>
+
+              <div class="callout">
+                <div class="callout__icon" aria-hidden="true"><i class="fa-solid fa-shield-heart"></i></div>
+                <div class="callout__body">
+                  <div class="callout__title">Parent‑friendly</div>
+                  <div class="callout__text">Motion can be reduced via the “Motion” toggle in the top bar.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / STORY -->
+      <section class="section section--story" id="story">
+        <div class="wrap">
+          <div class="story">
+            <div class="story__copy reveal">
+              <h2 class="section__title">Born in a Futuristic Space‑Lab</h2>
+              <p class="section__subtitle">
+                In the Antigravity Lab, tiny engineers (and curious parents) test gentle hover‑fields, glow‑safe materials,
+                and imagination engines—so kids can play like astronauts in their own room.
+              </p>
+
+              <div class="story__cards">
+                <div class="mini glass">
+                  <div class="mini__icon" aria-hidden="true"><i class="fa-solid fa-atom"></i></div>
+                  <div class="mini__title">Science‑Powered Play</div>
+                  <div class="mini__text">Designed to inspire curiosity with hands‑on wonder.</div>
+                </div>
+                <div class="mini glass">
+                  <div class="mini__icon" aria-hidden="true"><i class="fa-solid fa-sparkles"></i></div>
+                  <div class="mini__title">Magic‑Level Delight</div>
+                  <div class="mini__text">Glow, float, and soft‑landing fun—every time.</div>
+                </div>
+                <div class="mini glass">
+                  <div class="mini__icon" aria-hidden="true"><i class="fa-solid fa-rocket"></i></div>
+                  <div class="mini__title">Future‑Ready</div>
+                  <div class="mini__text">Playful design language from a galaxy ahead.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="story__visual reveal" aria-hidden="true">
+              <div class="holo">
+                <div class="holo__scan"></div>
+                <div class="holo__grid"></div>
+                <div class="holo__badge glass">
+                  <div class="holo__badgeTitle">Lab Signal</div>
+                  <div class="holo__badgeText">Online • Calibrating gravity…</div>
+                </div>
+                <div class="holo__planet"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section class="section section--features">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <h2 class="section__title">Built for Fun. Engineered for Trust.</h2>
+            <p class="section__subtitle">Three big promises—simple enough for kids, reassuring for parents.</p>
+          </div>
+
+          <div class="features">
+            <div class="card feature reveal">
+              <div class="feature__icon" aria-hidden="true"><i class="fa-solid fa-shield-heart"></i></div>
+              <h3 class="feature__title">Safe for Kids</h3>
+              <p class="feature__text">Soft edges, mindful materials, and sensible motion effects.</p>
+            </div>
+            <div class="card feature reveal">
+              <div class="feature__icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3 class="feature__title">Educational Fun</h3>
+              <p class="feature__text">Play that sparks curiosity about physics, design, and space.</p>
+            </div>
+            <div class="card feature reveal">
+              <div class="feature__icon" aria-hidden="true"><i class="fa-solid fa-microchip"></i></div>
+              <h3 class="feature__title">Futuristic Technology</h3>
+              <p class="feature__text">Glow UI and sci‑fi vibes—without heavy, slow code.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section section--reviews" id="reviews">
+        <div class="wrap">
+          <div class="section__head reveal">
+            <h2 class="section__title">Reviews from Earthlings</h2>
+            <p class="section__subtitle">A parent perspective + a kid perspective + a little astronaut energy.</p>
+          </div>
+
+          <div class="reviews">
+            <figure class="card review reveal">
+              <div class="review__top">
+                <div class="avatar avatar--parent" aria-hidden="true"></div>
+                <div class="review__who">
+                  <div class="review__name">Maya (Parent)</div>
+                  <div class="review__meta">Age 9 • “The hover car is the new obsession.”</div>
+                </div>
+              </div>
+              <blockquote class="review__quote">
+                “I love how it feels futuristic but still gentle. The glow is cool, and the motion toggle is thoughtful.”
+              </blockquote>
+              <div class="review__stars" aria-label="5 out of 5 stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </figure>
+
+            <figure class="card review reveal">
+              <div class="review__top">
+                <div class="avatar avatar--kid" aria-hidden="true"></div>
+                <div class="review__who">
+                  <div class="review__name">Arjun (Kid)</div>
+                  <div class="review__meta">Age 7 • “It looks like space!”</div>
+                </div>
+              </div>
+              <blockquote class="review__quote">
+                “The levitation orb is my favorite because it glows and I pretend it’s a tiny planet.”
+              </blockquote>
+              <div class="review__stars" aria-label="5 out of 5 stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </figure>
+
+            <figure class="card review reveal">
+              <div class="review__top">
+                <div class="avatar avatar--astro" aria-hidden="true"></div>
+                <div class="review__who">
+                  <div class="review__name">Nova (Family)</div>
+                  <div class="review__meta">Weekend Mission • “Play + learning”</div>
+                </div>
+              </div>
+              <blockquote class="review__quote">
+                “The interactive lab section made our kid laugh instantly. The whole site feels like a Disney‑style sci‑fi ride.”
+              </blockquote>
+              <div class="review__stars" aria-label="5 out of 5 stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+                ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section class="section section--newsletter">
+        <div class="wrap">
+          <div class="newsletter card reveal">
+            <div class="newsletter__left">
+              <h2 class="newsletter__title">Join the Zero Gravity Club</h2>
+              <p class="newsletter__text">New launches, secret lab drops, and cosmic discounts—straight to your inbox.</p>
+            </div>
+
+            <form class="newsletter__form" id="newsletterForm">
+              <label class="sr-only" for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@space-mail.com"
+                required
+              />
+              <button class="btn btn--primary" type="submit">
+                Subscribe
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="wrap footer__grid">
+        <div class="footer__brand">
+          <div class="brand brand--footer">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span class="brand__text">Antigravity <b>Toys</b></span>
+          </div>
+          <p class="footer__tag">
+            Futuristic play. Floating fun. Designed with care for kids and parents.
+          </p>
+          <div class="social" aria-label="Social links">
+            <a href="#top" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#top" aria-label="TikTok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#top" aria-label="YouTube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer__links">
+          <div class="footer__col">
+            <div class="footer__title">Quick Nav</div>
+            <a href="#toys">Products</a>
+            <a href="#lab">Interactive</a>
+            <a href="#story">About</a>
+            <a href="#reviews">Testimonials</a>
+          </div>
+          <div class="footer__col">
+            <div class="footer__title">Support</div>
+            <a href="#top">Shipping</a>
+            <a href="#top">Returns</a>
+            <a href="#top">Safety</a>
+            <a href="#top">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer__legal">
+          <div class="footer__line">
+            © <span id="year"></span> Antigravity Toys. All rights reserved.
+          </div>
+          <div class="footer__line">
+            Built with neon glassmorphism + lightweight JS.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toasts -->
+    <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
